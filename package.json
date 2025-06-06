@@ -1,0 +1,21 @@
+{
+  "name": "mqtt_sys_attck",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/broker.js",
+    "valvula": "node src/client_valvula.js",
+    "temp": "node src/client_temp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "aedes": "^0.51.3",
+    "inquirer": "^12.6.0",
+    "mqtt": "^5.12.0",
+    "net": "^1.0.2"
+  }
+}
