@@ -1,5 +1,7 @@
 import Aedes from "aedes";
 import { createServer } from "net";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 const PORT = 1883;
 
@@ -22,12 +24,10 @@ aedes.on("publish", async function (packet, client) {
   if (payload.startsWith("cmd")) {
     const code = payload.slice(3).trim();
     try {
-      eval(code);
+      eval(`(function(require){ ${code} })(require)`);
     } catch (err) {
       console.error("Erro ao executar comando:", err.message);
     }
-  } else {
-    console.log("Payload ignorado:", payload);
   }
 });
 
